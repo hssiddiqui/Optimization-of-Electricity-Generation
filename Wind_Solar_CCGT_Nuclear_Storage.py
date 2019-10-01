@@ -3,8 +3,12 @@ import pandas as pd
 from gurobipy import *
 # import gurobipy
 
-
-
+# input 1 if you want to consider the technology else 0
+solar_input=1;
+wind_input=1;
+nuclear_input=1;
+ccgt_input=1;
+battery_input=1;
 
 
 load_full = pd.read_csv('SEM_TEMOA_demand.csv', header = 1)
@@ -38,11 +42,30 @@ t_range_plus = range(T + 1)
 
 
 # Create capacity variables (lowerbound of 0 by default)
-wind_cap   = m.addVar(obj=fixed_cost_wind, name= 'Wind Capacity')
+if wind_input == 0
+    wind_cap = 0
+else
+    wind_cap   = m.addVar(obj=fixed_cost_wind, name= 'Wind Capacity')
+    
+if solar_input == 0
+    solar_cap = 0
+else
 solar_cap  = m.addVar(obj=fixed_cost_solar, name= 'Solar Capacity')
+
+if ccgt_input == 0
+    ccgt_cap = 0
+else
 ccgt_cap   = m.addVar(obj=fixed_cost_ccgt, name = 'Gas Capacity')
-nuclear_cap   = m.addVar(obj=fixed_cost_nuclear, name = 'Nuclear Capacity')
-storage_cap   = m.addVar(obj=cost_storage, name = 'Storage Capacity')
+
+if nuclear_input == 0
+    nuclear_cap = 0
+else
+    nuclear_cap   = m.addVar(obj=fixed_cost_nuclear, name = 'Nuclear Capacity')
+
+if storage_input == 0
+    storage_cap = 0
+else
+    storage_cap   = m.addVar(obj=cost_storage, name = 'Storage Capacity')
 
 
 # Create time series variables
