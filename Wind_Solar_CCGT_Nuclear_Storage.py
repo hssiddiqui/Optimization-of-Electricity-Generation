@@ -8,7 +8,7 @@ solar_input=1;
 wind_input=1;
 nuclear_input=1;
 ccgt_input=1;
-battery_input=1;
+storage_input=0;
 
 
 load_full = pd.read_csv('SEM_TEMOA_demand.csv', header = 1)
@@ -42,29 +42,29 @@ t_range_plus = range(T + 1)
 
 
 # Create capacity variables (lowerbound of 0 by default)
-if wind_input == 0
+if wind_input == 0:
     wind_cap = 0
-else
+else:
     wind_cap   = m.addVar(obj=fixed_cost_wind, name= 'Wind Capacity')
     
-if solar_input == 0
+if solar_input == 0:
     solar_cap = 0
-else
-solar_cap  = m.addVar(obj=fixed_cost_solar, name= 'Solar Capacity')
+else:
+    solar_cap  = m.addVar(obj=fixed_cost_solar, name= 'Solar Capacity')
 
-if ccgt_input == 0
+if ccgt_input == 0:
     ccgt_cap = 0
-else
-ccgt_cap   = m.addVar(obj=fixed_cost_ccgt, name = 'Gas Capacity')
+else:
+    ccgt_cap   = m.addVar(obj=fixed_cost_ccgt, name = 'Gas Capacity')
 
-if nuclear_input == 0
+if nuclear_input == 0:
     nuclear_cap = 0
-else
+else:
     nuclear_cap   = m.addVar(obj=fixed_cost_nuclear, name = 'Nuclear Capacity')
 
-if storage_input == 0
+if storage_input == 0:
     storage_cap = 0
-else
+else:
     storage_cap   = m.addVar(obj=cost_storage, name = 'Storage Capacity')
 
 
