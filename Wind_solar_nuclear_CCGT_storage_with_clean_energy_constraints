@@ -3,3 +3,24 @@ import pandas as pd
 from gurobipy import *
 # import gurobipy
 
+
+## Create gas util variable
+gas_util   = m.addVars(t_range,  obj = gas_costs_compiled[1], name= 'gas_util')
+
+## Other constraints go here
+
+m.update()
+
+## Create dictionary to store gas util gurobi variables
+model_gasutil = {}
+
+## Set the fraction of electricity to be met by low-carbon electricity
+lowc_frac = 0		
+
+## Populate the dictionary w the gas util variables
+for i in range(0, T):
+    model_gasutil[i] = m.getVarByName("gas_util[" + str(i) + "]")
+
+## Constrain the electricity supply
+m.addConstr(quicksum(model_gasutil[i] for i in t_range) -
+            (np.sum(load) * (1-lowc_frac)) <= 0 )
