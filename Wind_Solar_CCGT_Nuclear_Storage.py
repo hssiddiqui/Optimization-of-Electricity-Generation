@@ -100,7 +100,7 @@ m.optimize()
 
 obj =     m.getObjective()
 allvars = m.getVars()
-
+#Genration capacities in kW and objective function in $
 
 print('-------------------------')
 for i,j in enumerate(allvars[0:5]):
