@@ -1,1 +1,0 @@
-#Transmission taken into account
