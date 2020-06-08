@@ -113,43 +113,29 @@ print('LCOE: ${}/MWh'.format(LCOE))
 
 #Extracting time series variables
 dispatch_ccgt=np.zeros(8784)
-k=0
 for i,j in enumerate(allvars[6:5+8784]):
-    dispatch_ccgt[k]=j.x / 10**6
-    k+=1
+    dispatch_ccgt[i]=j.x / 10**6
     
 dispatch_nuclear=np.zeros(8784)
-k=0
 for i,j in enumerate(allvars[6+8784:5+8784*2]):
-    dispatch_nuclear[k]=j.x / 10**6
-    k+=1
+    dispatch_nuclear[i]=j.x / 10**6
     
 dispatch_storage=np.zeros(8785)
-k=0
 for i,j in enumerate(allvars[6+8784*2:6+8784*3]):
-    dispatch_storage[k]=j.x / 10**6
-    k+=1
+    dispatch_storage[i]=j.x / 10**6
     
 dispatch_wind=np.zeros(8784)
-k=0
 for i,j in enumerate(allvars[7+8784*3:6+8784*4]):
-    dispatch_wind[k]=j.x / 10**6
-    k+=1
+    dispatch_wind[i]=j.x / 10**6
     
 dispatch_solar=np.zeros(8784)
-k=0
 for i,j in enumerate(allvars[7+8784*4:6+8784*5]):
-    dispatch_solar[k]=j.x / 10**6
-    k+=1
+    dispatch_solar[i]=j.x / 10**6
     
 dispatch_charge=np.zeros(8784)
-k=0
 for i,j in enumerate(allvars[7+8784*5:6+8784*6]):
-    dispatch_charge[k]=j.x / 10**6
-    k+=1
+    dispatch_charge[i]=j.x / 10**6
 
 dispatch_discharge=np.zeros(8784)
-k=0
 for i,j in enumerate(allvars[7+8784*6:6+8784*7]):
-    dispatch_discharge[k]=j.x / 10**6
-    k+=1
+    dispatch_discharge[i]=j.x / 10**6
